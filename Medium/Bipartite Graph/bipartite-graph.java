@@ -47,25 +47,21 @@ class pair
 }
 class Solution
 {
-    public boolean check(int start,ArrayList<ArrayList<Integer>>adj,
+    public boolean check(int start,int col,ArrayList<ArrayList<Integer>>adj,
     int visited[])
     {
         Queue<Integer> q=new LinkedList<>();
         q.offer(start);
-        visited[start]=0;
-        while(!q.isEmpty())
+        visited[start]=col;
+        for(int x:adj.get(start))
         {
-            int top=q.poll();
-            for(int x:adj.get(top))
+            if(visited[x]==-1)
             {
-                if(visited[x]==-1)
-                {
-                    visited[x]=1-visited[top];
-                    q.offer(x);
-                }
-                else if(visited[x]==visited[top])
+                if(!check(x,1-col,adj,visited))
                 return false;
             }
+            else if(visited[x]==visited[start])
+            return false;
         }
         return true;
     }
@@ -79,7 +75,7 @@ class Solution
         {
             if(visited[i]==-1)
             {
-                if(!check(i,adj,visited))
+                if(!check(i,0,adj,visited))
                 return false;
             }
         }
