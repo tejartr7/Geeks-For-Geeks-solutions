@@ -67,23 +67,38 @@ class Solution {
     List<Integer> eventualSafeNodes(int v, List<List<Integer>> adj) {
 
         // Your code here
-       int vis[] = new int[v];
-        int pathVis[] = new int[v];
-        int check[] = new int[v];
-       int i;
-       List<Integer> safe=new LinkedList<>();
-       for(i=0;i<v;i++)
-       {
-           if(vis[i]==0)
-           {
-               dfs(i,vis,check,pathVis,adj);
-           }
-       }
-       for(i=0;i<v;i++)
-       {
-           if(check[i]==1)
-           safe.add(i);
-       }
-       return safe;
+        List<List<Integer>> list=new ArrayList<>();
+        int i;
+        for(i=0;i<v;i++)
+        list.add(new ArrayList<>());
+        int indegree[]=new int[v];
+        for(i=0;i<v;i++)
+        {
+            for(int x:adj.get(i))
+            {
+                list.get(x).add(i);
+                indegree[i]++;
+            }
+        }
+        Queue<Integer> q=new LinkedList<>();
+        List<Integer> safe=new LinkedList<>();
+        for(i=0;i<v;i++)
+            if(indegree[i]==0)
+                q.offer(i);
+        while(!q.isEmpty())
+        {
+            int top=q.poll();
+            safe.add(top);
+            for(int x:list.get(top))
+            {
+                indegree[x]--;
+                if(indegree[x]==0)
+                {
+                    q.offer(x);
+                }
+            }
+        }
+        Collections.sort(safe);
+        return safe;
     }
 }
