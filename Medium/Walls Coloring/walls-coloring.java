@@ -33,16 +33,14 @@ class GFG{
 class Solution{
 	int minCost(int [][] colors, int n){
         //Write your code here
-        int x=colors[0][0];
-        int y=colors[0][1];
-        int z=colors[0][2];
+        int dp[]=colors[0];
         for(int i=1;i<n;i++)
         {
-            int p=x,q=y,r=z;
-            x=colors[i][0]+Math.min(r,q);
-            y=colors[i][1]+Math.min(p,r);
-            z=colors[i][2]+Math.min(p,q);
+            int p=dp[0],q=dp[1],r=dp[2];
+            dp[0]=colors[i][0]+Math.min(r,q);
+            dp[1]=colors[i][1]+Math.min(p,r);
+            dp[2]=colors[i][2]+Math.min(p,q);
         }
-        return Math.min(x,Math.min(y,z));
+        return Math.min(dp[0],Math.min(dp[1],dp[2]));
     }
 }
