@@ -52,19 +52,36 @@ class Solution {
     }
     public boolean isCyclic(int v, ArrayList<ArrayList<Integer>> adj) {
         // code here
-        boolean vis[]=new boolean[v+1];
-        boolean path[]=new boolean[v+1];
-        Arrays.fill(vis,false);
-        Arrays.fill(path,false);
         int i;
+        int indegree[]=new int[v];
+        Arrays.fill(indegree,0);
+        int count=0;
         for(i=0;i<v;i++)
         {
-            if(!vis[i])
+            for(int x:adj.get(i))
             {
-                if(dfs(i,vis,path,adj))
-                return true;
+                indegree[x]++;
             }
         }
-        return false;
+        Queue<Integer> q=new LinkedList<>();
+        //List<Integer> list=new ArrayList<>();
+        for(i=0;i<v;i++)
+        {
+            if(indegree[i]==0)
+            {q.offer(i);
+            }
+        }
+        while(!q.isEmpty())
+        {
+           int top=q.poll();
+           count++;
+           for(int x:adj.get(top))
+           {
+               indegree[x]--;
+               if(indegree[x]==0)
+               q.offer(x);
+           }
+        }
+        return !(count==v);
     }
 }
