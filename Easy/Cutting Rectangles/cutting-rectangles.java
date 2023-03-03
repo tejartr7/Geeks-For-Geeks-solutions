@@ -1,0 +1,50 @@
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+
+class GFG{
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+        while(t-- > 0){
+            String input_line[] = read.readLine().trim().split("\\s+");
+            long L = Long.parseLong(input_line[0]);
+            long B = Long.parseLong(input_line[1]);
+
+            Solution ob = new Solution();
+            List<Long> ans = new ArrayList<Long>();
+            ans = ob.minimumSquares(L, B);
+            System.out.print(ans.get(0)+" ");
+            System.out.println(ans.get(1));
+        }
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution{
+    static long gcd(long a,long b)
+    {
+        if(b==0l)
+        return a;
+        return gcd(b,a%b);
+    }
+    static List<Long> minimumSquares(long l, long b)
+    {
+        // code here
+        long mini=gcd(l,b);
+        l*=b;
+        mini=mini;
+        long k=l/(mini*mini);
+        List<Long> list=new LinkedList<>();
+        list.add(k);
+        list.add(mini);
+        return list;
+    }
+}
