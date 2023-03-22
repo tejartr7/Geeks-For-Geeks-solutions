@@ -1,4 +1,5 @@
 #This is my GFG solutions in github
+
 Here i will post my GFG java solutions
 <p>This is an extension that i have found on google chrome store which helps you to post GFG Solution no GitHub</p>
 <br>
@@ -20,5 +21,7 @@ Here i will post my GFG java solutions
 <p>What are you waiting for Star this repo and follow me on GitHub</p>
 <br>
 #other social platforms
+
 #<a href="https://www.linkedin.com/in/raghu-teja-reddy-sureddy-8b6721236/">LinkedIn</a>
+
 #<a href="https://www.geeksforgeeks.org/">GFG coding profile</a>
