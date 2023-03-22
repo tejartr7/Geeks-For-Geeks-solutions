@@ -8,3 +8,7 @@ Here i will post my GFG java solutions
 <br>
 <p>Geek For Geeks organises contests in various ways which helps you to hone your problem solving skills</p>
 <a href="">To know more about Geek For Geeks(GFG)</a>
+<br>
+<div>This is my repositry which use the below extension to push my solutions from GFG to GitHub it is available on web store</div>
+<br>
+<div></div>
