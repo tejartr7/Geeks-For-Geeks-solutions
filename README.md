@@ -11,4 +11,14 @@ Here i will post my GFG java solutions
 <br>
 <div>This is my repositry which use the below extension to push my solutions from GFG to GitHub it is available on web store</div>
 <br>
-<div></div>
+<div>This repo contains solutions for All kind of problems which I have solved in GFG in JAVA</div>
+<br>
+<p>As the number of resources for java are less you can use my repo to get solutions</p>
+<br>
+<p>Not only for GFG solutions you can get around 500+ solutions of LeetCode problems in JAVA</p>
+<br>
+<p>What are you waiting for Star this repo and follow me on GitHub</p>
+<br>
+# other social platforms
+# <a href="https://www.linkedin.com/in/raghu-teja-reddy-sureddy-8b6721236/">LinkedIn</a>
+# <a href="https://www.geeksforgeeks.org/">GFG coding profile</a>
