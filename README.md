@@ -1,5 +1,8 @@
 # This is my GFG solutions in github
-
+<hr>
+# want to sponser me click on this button and support me 
+<iframe src="https://github.com/sponsors/tejartr7/button" title="Sponsor tejartr7" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
+<br>
 Here i will post my GFG java solutions
 <p>This is an extension that i have found on google chrome store which helps you to post GFG Solution no GitHub</p>
 <br>
