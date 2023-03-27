@@ -2,7 +2,7 @@
 <hr>
 # want to sponser me click on this button and support me 
 <hr>
-<iframe src="https://github.com/sponsors/tejartr7/button" title="Sponsor tejartr7" height="32" width="114" style="border: 0; border-radius: 6px;">Click here</iframe>
+<iframe src="https://github.com/sponsors/tejartr7/card" title="Sponsor tejartr7" height="225" width="600" style="border: 0;">Click here</iframe>
 <br>
 Here i will post my GFG java solutions
 <p>This is an extension that i have found on google chrome store which helps you to post GFG Solution no GitHub</p>
