@@ -31,53 +31,82 @@ public class Main{
 // } Driver Code Ends
 
 
-// User function Template for Java
-class  pair
-{
-    int wt;
-    int node;
-    pair(int wt,int node)
-    {
-        this.wt=wt;
-        this.node=node;
+class DisjointSet {
+    //List<Integer> rank = new ArrayList<>();
+    List<Integer> parent = new ArrayList<>();
+    List<Integer> size = new ArrayList<>();
+    public DisjointSet(int n) {
+        for (int i = 0; i <= n; i++) {
+            parent.add(i);
+            size.add(1);
+        }
+    }
+
+    public int findUPar(int node) {
+        if (node == parent.get(node)) {
+            return node;
+        }
+        int ulp = findUPar(parent.get(node));
+        parent.set(node, ulp);
+        return parent.get(node);
+    }
+
+    public void unionBySize(int u, int v) {
+       int a=findUPar(u);
+       int b=findUPar(v);
+       if(a==b)
+       return ;
+       if(size.get(a)<size.get(b))
+       {
+           parent.set(a,b);
+           size.set(b,size.get(a)+size.get(b));
+       }
+       else
+       {
+           parent.set(b,a);
+           size.set(a,size.get(a)+size.get(b));
+       }
     }
 }
+class Edge implements Comparable<Edge> {
+    int src, dest, weight;
+    Edge(int _src, int _dest, int _wt) {
+        this.src = _src; this.dest = _dest; this.weight = _wt;
+    }
+    // Comparator function used for
+    // sorting edgesbased on their weight
+    public int compareTo(Edge compareEdge) {
+        return this.weight - compareEdge.weight;
+    }
+};
 class Solution{
-	static int spanningTree(int v, int e, int edges[][]){
+	static int spanningTree(int V, int E, int adj[][]){
             // Code Here.
-            Map<Integer,List<pair>> map=new HashMap<>();
-            int i,j;
-            for(i=0;i<edges.length;i++)
+            List<Edge> edges = new ArrayList<Edge>();
+        // O(N + E)
+        for(int[] i :adj)
+        {
+            int u=i[0];
+            int v=i[1];
+            int cost=i[2];
+            //Edge temp= new Edge(u,v,cost);
+            edges.add(new Edge(u,v,cost));
+        }
+        DisjointSet ds = new DisjointSet(V);
+        // M log M
+        Collections.sort(edges);
+        int ans=0;
+        for(Edge x:edges)
+        {
+            int a=x.src;
+            int b=x.dest;
+            int wt=x.weight;
+            if(ds.findUPar(a)!=ds.findUPar(b))
             {
-                int x=edges[i][0];
-                int y=edges[i][1];
-                int z=edges[i][2];
-                if(!map.containsKey(x))
-                    map.put(x,new ArrayList<>());
-                if(!map.containsKey(y))
-                    map.put(y,new ArrayList<>());
-                map.get(x).add(new pair(y,z));
-                map.get(y).add(new pair(x,z));
+                ans+=wt;
+                ds.unionBySize(a,b);
             }
-            //System.out.println(map);
-            PriorityQueue<pair> pq=new PriorityQueue<pair>((a,b)->a.wt-b.wt);
-            pq.offer(new pair(0,0));
-            int sum=0;
-            boolean visited[]=new boolean[v];
-            //visited[0]=true;
-            while(!pq.isEmpty())
-            {
-                pair top=pq.poll();
-                if(visited[top.node])
-                continue;
-                visited[top.node]=true;
-                sum+=top.wt;
-                for(pair x:map.get(top.node))
-                {
-                    if(!visited[x.wt])
-                        pq.offer(new pair(x.node,x.wt));
-                }
-            }
-            return sum;
+        }
+        return ans;
         }
 }
