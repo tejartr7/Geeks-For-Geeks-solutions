@@ -27,20 +27,19 @@ class Solution{
     static int cuts(String s)
     {
         // code here
-        int n = s.length();
-        int[] dp = new int[n + 1];
-        Arrays.fill(dp, n + 1);
-        dp[0] = 0;
-
-        for (int i = 0; i < n; i++) {
-            for (int k = i; k >= 0; k--) {
-                if (s.charAt(k) != '0' && isPowerOfFive(s.substring(k, i + 1))) {
-                    dp[i + 1] = Math.min(dp[i + 1], dp[k] + 1);
-                }
+        int i,k,n=s.length();
+        int dp[]=new int[n+1];
+        Arrays.fill(dp,100);
+        dp[0]=0;
+        for(i=0;i<n;i++)
+        {
+            for(k=i;k>=0;k--)
+            {
+                if(s.charAt(k)!='0' && isPowerOfFive(s.substring(k,i+1)))
+                dp[i+1]=Math.min(dp[i+1],dp[k]+1);
             }
         }
-
-        return dp[n] != n + 1 ? dp[n] : -1;
+        return dp[n]!=100?dp[n]:-1;
     }
     private static boolean isPowerOfFive(String str) {
         long num = Long.parseLong(str, 2);
