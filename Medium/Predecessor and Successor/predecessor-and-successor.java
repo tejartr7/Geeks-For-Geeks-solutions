@@ -151,8 +151,32 @@ public static void findPreSuc(Node root, int key)
        And the data inside these classes will be printed automatically by the driver code. 
     */
     
-    helper(root,key);
-    mini=maxi=Integer.MAX_VALUE;
+    Node temp=root;
+    while(temp!=null)
+    {
+        if(temp.data>=key)
+        {
+            temp=temp.left;
+        }
+        else
+        {
+            pre=temp;
+            temp=temp.right;
+        }
+    }
+    temp=root;
+    while(temp!=null)
+    {
+        if(temp.data<=key)
+        {
+            temp=temp.right;
+        }
+        else
+        {
+            suc=temp;
+            temp=temp.left;
+        }
+    }
     //a=b=0;
 }
 }
