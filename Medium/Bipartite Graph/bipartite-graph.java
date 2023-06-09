@@ -47,23 +47,20 @@ class pair
 }
 class Solution
 {
-    public boolean check(int start,int col,ArrayList<ArrayList<Integer>>adj,
-    int visited[])
+    public boolean check(int i,int col,ArrayList<ArrayList<Integer>>adj,int visited[])
     {
-        Queue<Integer> q=new LinkedList<>();
-        q.offer(start);
-        visited[start]=col;
-        for(int x:adj.get(start))
-        {
-            if(visited[x]==-1)
-            {
+       visited[i]=col;
+       for(int x:adj.get(i))
+       {
+           if(visited[x]==-1)
+           {
                 if(!check(x,1-col,adj,visited))
                 return false;
-            }
-            else if(visited[x]==visited[start])
-            return false;
-        }
-        return true;
+           }
+           else if (visited[x]==visited[i])
+                return false;
+       }
+       return true;
     }
     public boolean isBipartite(int v, ArrayList<ArrayList<Integer>>adj)
     {
