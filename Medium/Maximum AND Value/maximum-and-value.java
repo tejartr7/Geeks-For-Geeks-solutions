@@ -8,24 +8,37 @@ import java.util.*;
 //User function Template for Java
 
 class Solution{
-    public static int maxAND (int arr[], int n) {
-        int res = 0, count = 0;
-        for(int bit = 31; bit>=0; bit--){
-            count = checkBits((res | 1<<bit), arr, n);
-            
-            if(count>=2) {//System.out.println(bit);
-            res |= (1<<bit);}
+    
+   // Function for finding maximum AND value.
+    public static int counter(int arr[],int temp)
+    {
+        int i,n=arr.length;
+        int cnt=0;
+        for(i=0;i<n;i++)
+        {
+            if((arr[i]&temp)==temp)
+            cnt++;
         }
-        return res;
+        return cnt;
+    }
+    public static int maxAND (int arr[], int n) {
+        
+        // Your code here
+        // You can add extra function (if required)
+        int i,j;
+        int ans=0;
+        for(i=31;i>=0;i--)
+        {
+            int temp=(ans|(1<<i));
+            int x=counter(arr,temp);
+            if(x>=2)
+            {
+                ans|=temp;
+            }
+        }
+        return ans;
     }
     
-    static int checkBits(int pattern, int[] arr, int n){
-        int count = 0;
-        for(int i = 0; i<n; i++){
-            if((pattern&arr[i])==pattern) count++;
-        }
-        return count;
-    }
 }
 
 //{ Driver Code Starts.
