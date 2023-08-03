@@ -27,77 +27,60 @@ class Main {
 }
 // } Driver Code Ends
 
+
+//User function Template for Java
 class pair
 {
     int node;
-    int weight;
+    int dist;
     pair(int x,int y)
     {
         node=x;
-        weight=y;
+        dist=y;
     }
 }
-//User function Template for Java
+
 class Solution {
-    public void helper(pair x,int dist,int ans[])
-    {
-        dist=dist+x.weight;
-        ans[x.node]=Math.min(ans[x.node],dist);
-    }
-    public void dfs(int start,Stack<Integer> stack,Map<Integer,List<pair>> map,
-    boolean visited[])
-    {
-        visited[start]=true;
-        for(pair x:map.get(start))
-        {
-            if(!visited[x.node])
-            {
-                dfs(x.node,stack,map,visited);
-            }
-        }
-        stack.push(start);
-    }
+
 	public int[] shortestPath(int n,int m, int[][] edges) {
-		//Code 
-		int ans[]=new int[n];
-		Arrays.fill(ans,Integer.MAX_VALUE);
+		//Code here
 		Map<Integer,List<pair>> map=new HashMap<>();
-		int i;
+		int i,j;
 		for(i=0;i<n;i++)
-		{
-		    map.put(i,new ArrayList<>());
-		}
+		map.put(i,new ArrayList<>());
 		for(i=0;i<m;i++)
 		{
-		    map.get(edges[i][0]).add(new pair(edges[i][1],edges[i][2]));
+		    int x=edges[i][0];
+		    int y=edges[i][1];
+		    int z=edges[i][2];
+		    map.get(x).add(new pair(y,z));
 		}
-		//System.out.println(map);
-		boolean visited[]=new boolean[n];
-		Stack<Integer> stack=new Stack<>();
-		for(i=0;i<n;i++)
+		int dis[]=new int[n];
+		Arrays.fill(dis,1000_000_000);
+		dis[0]=0;
+		PriorityQueue<pair> pq=new PriorityQueue<>((a,b)->a.dist-b.dist);
+		pq.offer(new pair(0,0));
+		while(!pq.isEmpty())
 		{
-		    if(!visited[i])
+		    pair top=pq.poll();
+		    int node=top.node;
+		    int dist=top.dist;
+		    for(pair x:map.get(node))
 		    {
-		        dfs(i,stack,map,visited);
+		        if(x.dist+dist<dis[x.node])
+		        {
+		            dis[x.node]=x.dist+dist;
+		            pq.offer(new pair(x.node,dis[x.node]));
+		        }
 		    }
 		}
-		//System.out.println(stack);
-		ans[0]=0;
-		while(stack.peek()!=0)
+		for(i=0;i<n;i++)
 		{
-		    ans[stack.pop()]=-1;
-		}
-		while(!stack.isEmpty())
-		{
-		    int peek=stack.pop();
-		    for(pair x:map.get(peek))
+		    if(dis[i]==1000_000_000)
 		    {
-		        helper(x,ans[peek],ans);
+		        dis[i]=-1;
 		    }
 		}
-		for(i=0;i<n;i++)
-		if(ans[i]==Integer.MAX_VALUE)
-		ans[i]=-1;
-		return ans;
+		return dis;
 	}
 }
