@@ -45,25 +45,24 @@ class GFG
 
 class Solution
 { 
-    static void insertBottom(Stack<Integer> stack,int n)
+    static void helper(int x,Stack<Integer> s)
     {
-        if(stack.isEmpty())
+        if(s.size()==0)
         {
-            stack.push(n);
+            s.push(x);
             return ;
         }
-        int k=stack.pop();
-        insertBottom(stack,n);
-        stack.push(k);
+        int y=s.pop();
+        helper(x,s);
+        s.push(y);
     }
     static void reverse(Stack<Integer> s)
     {
         // add your code here
-        if(s.isEmpty())
+        if(s.size()==0)
         return ;
         int x=s.pop();
-        //System.out.print(x+" ");
         reverse(s);
-        insertBottom(s,x);
+        helper(x,s);
     }
 }
