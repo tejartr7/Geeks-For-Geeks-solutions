@@ -1,62 +1,57 @@
 //{ Driver Code Starts
-import java.util.*;
-import java.lang.*;
+//Initial Template for Java
+
 import java.io.*;
+import java.util.*;
+
 class GFG {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br =
-            new BufferedReader(new InputStreamReader(System.in));
-        int T = Integer.parseInt(br.readLine().trim());
-        while (T-- > 0) {
-            String[] s = br.readLine().trim().split(" ");
-            int V = Integer.parseInt(s[0]);
-            int E = Integer.parseInt(s[1]);
-            ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-            for (int i = 0; i < V; i++) adj.add(i, new ArrayList<Integer>());
-            for (int i = 0; i < E; i++) {
-                String[] S = br.readLine().trim().split(" ");
-                int u = Integer.parseInt(S[0]);
-                int v = Integer.parseInt(S[1]);
-                adj.get(u).add(v);
-                adj.get(v).add(u);
+    public static void main(String args[]) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out = new PrintWriter(System.out);
+        int t = Integer.parseInt(in.readLine());
+        while (t-- > 0) {
+            String s[] = in.readLine().trim().split(" ");
+            int n = Integer.parseInt(s[0]);
+            int m = Integer.parseInt(s[1]);
+            int edges[][] = new int[m][2];
+            for (int i = 0; i < m; i++) {
+                s = in.readLine().trim().split(" ");
+                edges[i][0] = Integer.parseInt(s[0]);
+                edges[i][1] = Integer.parseInt(s[1]);
             }
-            Solution obj = new Solution();
-            ArrayList<ArrayList<Integer>> ans = obj.printGraph(V, adj);
-            for (int i = 0; i < ans.size(); i++) {
-                for (int j = 0; j < ans.get(i).size() - 1; j++) {
-                    System.out.print(ans.get(i).get(j) + "-> ");
+            Solution ob = new Solution();
+            List<List<Integer>> A = ob.printGraph(n, edges);
+            for (var i : A) {
+                Collections.sort(i);
+                for (int j : i) {
+                    out.print(j + " ");
                 }
-                System.out.print(ans.get(i).get(ans.get(i).size() - 1));
-                System.out.println();
+                out.println();
             }
         }
+        out.close();
     }
 }
+
 // } Driver Code Ends
 
 
+//User function Template for Java
 class Solution {
-    // Function to return the adjacency list for each vertex.
-    public ArrayList<ArrayList<Integer>> printGraph(
-        int v, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
-        boolean visited[]=new boolean[v];
-        ArrayList<ArrayList<Integer>> list=new ArrayList<>();
-        int i;
+    public List<List<Integer>> printGraph(int v, int edges[][]) {
+        List<List<Integer>> list=new ArrayList<>();
+        int i,j;
+        int e=edges.length;
         for(i=0;i<v;i++)
         {
-            list.add(new ArrayList<Integer>());
+            list.add(new ArrayList<>());
         }
-       // System.out.println(adj);
-        i=0;
-        for(ArrayList<Integer> x:adj)
+        for(i=0;i<e;i++)
         {
-            list.get(i).add(i);
-            for(int val:x)
-            {
-                list.get(i).add(val);
-            }
-            i++;
+            int x=edges[i][0];
+            int y=edges[i][1];
+            list.get(x).add(y);
+            list.get(y).add(x);
         }
         return list;
     }
