@@ -55,6 +55,8 @@ public class GFG
 // } Driver Code Ends
 
 
+
+
 //User function Template for Java
 class pair
 {
@@ -124,6 +126,7 @@ class Solution
                     list.add(top);
                 }
             }
+           
             helper(top.get(top.size()-1),top,used,set,q);
         }
         return list;
