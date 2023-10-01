@@ -1,6 +1,6 @@
-<h2><a href="https://practice.geeksforgeeks.org/problems/find-the-number-of-islands/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=find_the_number_of_islands">Find the number of islands</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a grid of size n*m (n is the number of rows and m is the number of columns in the grid) consisting of '0's (Water)&nbsp;and '1's(Land). Find the number of islands.</span><br>
+<h2><a href="https://practice.geeksforgeeks.org/problems/find-the-number-of-islands/1">Find the number of islands</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a grid of size n*m (n is the number of rows and m is the number of columns in the grid) consisting of '0's (Water)&nbsp;and '1's(Land). Find the number of islands.</span><br>
 <br>
-<strong><span style="font-size:18px">Note: </span></strong><span style="font-size:18px">An&nbsp;island&nbsp;is surrounded by water and is formed by connecting adjacent lands horizontally or vertically or diagonally i.e., in all 8 directions.</span></p>
+<strong><span style="font-size:18px">Note: </span></strong><span style="font-size:18px">An&nbsp;island&nbsp;is either surrounded by water or boundary of grid and is formed by connecting adjacent lands horizontally or vertically or diagonally i.e., in all 8 directions.</span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
@@ -26,7 +26,7 @@ All lands are connected.</span>
 <strong>Expanation:
 </strong>The grid is-
 0 <span style="color:#000080">1 1 1</span> 0 0 0
-0 0 <span style="color:#000080">1 1</span> 0 <span style="color:#FF0000">1</span> 0&nbsp;
+0 0 <span style="color:#000080">1 1</span> 0 <span style="color:#ff0000">1</span> 0&nbsp;
 There are two islands :- one is colored in blue 
 and other in orange.</span>
 </pre>
