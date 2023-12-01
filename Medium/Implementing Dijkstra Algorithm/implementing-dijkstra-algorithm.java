@@ -54,47 +54,38 @@ class DriverClass
 
 //User function Template for Java
 
-class pair
-{
-    int dist;
-    int node;
-    pair(int dist,int node)
-    {
-        this.dist=dist;
-        this.node=node;
-    }
-}
-class Solution
-{
-    //Function to find the shortest distance of all the vertices
-    //from the source vertex S.
-    static int[] dijkstra(int v, ArrayList<ArrayList<ArrayList<Integer>>> adj, int s)
-    {
-        // Write your code here
-        int ans[]=new int[v];
-        Arrays.fill(ans,Integer.MAX_VALUE);
-        int i;
-        PriorityQueue<pair> pq=new PriorityQueue<>((pair a,pair b)->a.dist!=b.dist?
-        a.dist-b.dist:a.node-b.node);
-        pq.offer(new pair(0,s));
-        ans[s]=0;
-        while(!pq.isEmpty())
-        {
-            pair top=pq.poll();
-            int dist=top.dist;
-            int node=top.node;
-            for(ArrayList<Integer> x:adj.get(node))
-            {
-                int currDist=x.get(1);
-                int nextNode=x.get(0);
-                if(ans[nextNode]>currDist+dist)
-                {
-                    ans[nextNode]=currDist+dist;
-                    pq.offer(new pair(currDist+dist,nextNode));
-                }
-            }
-        }
-        return ans;
+class pair {
+    int x, y;
+
+    pair(int a, int b) {
+        x = a;
+        y = b;
     }
 }
 
+class Solution {
+    static int[] dijkstra(int n, ArrayList<ArrayList<ArrayList<Integer>>> adj, int src) {
+        int[] dist = new int[n + 1];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+
+        PriorityQueue<pair> pq = new PriorityQueue<>((uu, vv) -> uu.y - vv.y);
+        pq.offer(new pair(src, 0));
+
+        while (!pq.isEmpty()) {
+            pair top = pq.poll();
+            int a = top.x;
+            int b = top.y;
+
+            for (ArrayList<Integer> curr : adj.get(a)) {
+                int x = curr.get(0);
+                int y = curr.get(1);
+                if (dist[a] + y < dist[x]) {
+                    dist[x] = dist[a] + y;
+                    pq.offer(new pair(x, dist[x]));
+                }
+            }
+        }
+        return dist;
+    }
+}
