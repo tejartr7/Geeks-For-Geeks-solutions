@@ -80,6 +80,8 @@ class GFG {
 // } Driver Code Ends
 
 
+
+
 //User function Template for Java
 
 class Solution {
@@ -127,33 +129,6 @@ class Solution {
         //System.out.println(ans);
         return k == n ? new String(ans) : "";
     }
-
-    public boolean isAlienSorted(String[] words, String order) {
-        Map<Character,Integer> map=new HashMap<>();
-        int i,j,n=order.length();
-        for(i=0;i<n;i++)
-        {
-            map.put(order.charAt(i),i);
-        }
-        n=words.length;
-        for(i=1;i<n;i++)
-        {
-            if(words[i-1].length()>words[i].length() && words[i-1].startsWith(words[i]))
-                return false;
-            else{
-            int l=Math.min(words[i-1].length(),words[i].length());
-            for(j=0;j<l;j++)
-            {
-                int prev=map.get(words[i-1].charAt(j));
-                int curr=map.get(words[i].charAt(j));
-                if(curr<prev) return false;
-                else if(curr>prev) break;
-            }
-            }
-        }
-        return true;
-    }
-
    public String findOrder(String[] dict, int n, int k) {
     List<List<Character>> list = new ArrayList<>();
 
